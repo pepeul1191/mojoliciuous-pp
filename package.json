@@ -25,5 +25,7 @@
         "gulp-uglify": "^3.0.0",
         "gulp-watch": "^4.3.11"
     },
-    "scripts": { "test": "jasmine" }
+    "scripts": {
+        "test": "jasmine"
+    }
 }

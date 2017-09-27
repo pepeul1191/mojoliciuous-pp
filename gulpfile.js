@@ -7,9 +7,9 @@ var replace = require('gulp-replace');
 var plumber = require('gulp-plumber');
 var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
-var BASE_URL = 'http://localhost:81/animalitos/media/';
-var DESTINO = 'media/dist/';
-var MEDIA = 'media/'
+var BASE_URL = 'http://localhost:3000/';
+var DESTINO = 'public/dist/';
+var MEDIA = 'public/'
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function errorLog(error){
