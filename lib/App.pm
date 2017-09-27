@@ -5,14 +5,21 @@ use Mojo::Base 'Mojolicious';
 sub startup {
   my $self = shift;
 
-  # Documentation browser under "/perldoc"
-  $self->plugin('PODRenderer');
+     $self->hook(before_dispatch => sub {
+        my $c = shift;
+        $c->res->headers->header('Access-Control-Allow-Origin' => '*');
+        $c->res->headers->header('x-powered-by' => 'Mojolicious (Perl)');
+        $c->res->headers->header('Server' => 'Ubuntu');
+    });
 
-  # Router
-  my $r = $self->routes;
+    # Documentation browser under "/perldoc"
+    $self->plugin('PODRenderer');
 
-  # Normal route to controller
-  $r->get('/')->to('example#welcome');
+    # Router
+    my $r = $self->routes;
+
+    # Normal route to controller
+    $r->get('/')->to('example#welcome');
 }
 
 1;
