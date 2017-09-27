@@ -1,0 +1,4 @@
+% layout 'blank';
+% title 'Bienvenido';
+<h1>login</h1>
+<h2>BASE_URL : <%= %{$variables}{'BASE_URL'} %></h2>

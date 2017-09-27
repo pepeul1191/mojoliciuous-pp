@@ -11,17 +11,17 @@ var BASE_URL = 'http://localhost:3000/';
 var DESTINO = 'public/dist/';
 var MEDIA = 'public/'
 
-// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------
 function errorLog(error){
     console.error.bind(error);
     this.emit('end');
 }
-// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------
 
 gulp.task('fonts', function() {
     gulp.src([MEDIA + 'bower_components/font-awesome/fonts/*', MEDIA + 'bower_components/bootstrap/fonts/*', MEDIA + 'assets/fontastic/fonts/*'])
     .pipe(plumber())
-      .pipe(gulp.dest(DESTINO + 'assets'));
+      .pipe(gulp.dest(DESTINO));
 });
 
 gulp.task('layout-css', function() {
@@ -32,19 +32,19 @@ gulp.task('layout-css', function() {
       .pipe(replace('../../../font-awesome/fonts/', BASE_URL + 'dist/assets/'))
       .pipe(replace('../../../../assets/fontastic/fonts', BASE_URL + 'dist/assets/'))
       .pipe(replace('../fonts/glyphicons', 'glyphicons'))
-      .pipe(gulp.dest(DESTINO + 'assets'));
+      .pipe(gulp.dest(DESTINO));
 });
 
 gulp.task('layout-js', function() {
     gulp.src([MEDIA + 'bower_components/jquery/dist/jquery.min.js', MEDIA + 'bower_components/bootstrap/dist/js/bootstrap.min.js', MEDIA + 'bower_components/underscore/underscore-min.js', MEDIA + 'bower_components/backbone/backbone-min.js', MEDIA + 'bower_components/backbone.marionette/lib/backbone.marionette.min.js', MEDIA + 'bower_components/handlebars/handlebars.min.js'])
     .pipe(plumber())
     .pipe(concatJs('libs.min.js'))
-    .pipe(gulp.dest(DESTINO + 'assets'));
+    .pipe(gulp.dest(DESTINO));
 });
 
 gulp.task('layout', ['fonts', 'layout-css', 'layout-js']);
 
-// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// ------------------------------------
 
 gulp.task('error-css', function() {
       gulp.src([
@@ -57,7 +57,7 @@ gulp.task('error-css', function() {
       .pipe(minifyCss())
       .pipe(replace('../../../font-awesome/fonts/', BASE_URL + 'dist/assets/'))
       .pipe(replace('../../../assets/fontastic/fonts/', 'assets/'))
-      .pipe(gulp.dest(DESTINO + 'assets'));
+      .pipe(gulp.dest(DESTINO));
 });
 
 gulp.task('app', function(){

@@ -43,3 +43,4 @@ Para imprimir variables:
 + http://search.cpan.org/~ether/Try-Tiny-0.27/lib/Try/Tiny.pm
 + http://stackoverflow.com/questions/20869123/json-decoding-in-perl
 + http://search.cpan.org/~shantanu/Crypt-MCrypt-0.07/lib/Crypt/MCrypt.pm
++ http://www.perlmonks.org/?node_id=1089381 (templates mojo)
