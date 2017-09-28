@@ -2,6 +2,10 @@ package App::Controller::Login;
 use Mojo::Base 'Mojolicious::Controller';
 use App::Config::Variables;
 use JSON;
+use Mojo::Log;
+use REST::Client;
+
+my $log = Mojo::Log->new;
 
 sub index {
     my $self = shift;
@@ -22,6 +26,12 @@ sub acceder {
     my $self = shift;
     my $usuario = $self->param('usuario');
     my $contrasenia = $self->param('contrasenia');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/validar?usuario=' . $usuario . '&contrasenia=' . $contrasenia;
+	my $client = REST::Client->new();
+	$client->POST($url);
+    $log->debug('1 +++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    $log->debug($client->responseContent());
+    $log->debug('2 +++++++++++++++++++++++++++++++++++++++++++++++++++++');
     my %data = (
         mensaje => JSON::true
     ); 
