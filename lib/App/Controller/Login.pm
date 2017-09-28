@@ -20,6 +20,8 @@ sub index {
 
 sub acceder {
     my $self = shift;
+    my $usuario = $self->param('usuario');
+    my $contrasenia = $self->param('contrasenia');
     my %data = (
         mensaje => JSON::true
     ); 
