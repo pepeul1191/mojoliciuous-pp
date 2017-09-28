@@ -9,17 +9,23 @@ my $log = Mojo::Log->new;
 
 sub index {
     my $self = shift;
-    my %data = (
-        mensaje => JSON::false
-    ); 
-    my %helper = (
-        title => 'Bienvenido', 
-        css => 'dist/login.min.css',
-        js_top => 'http://localhost:3000/',
-        js_bottom => 'dist/login.min.js',
-        data => encode_json \%data,
-    );
-    $self->render(template => 'login/index', variables => \%App::Config::Variables::Data, helper => \%helper);
+
+    if ($self->session('autenticado' ) == 1){
+        $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
+    }else{
+        my %data = (
+            mensaje => JSON::false
+        ); 
+        my %helper = (
+            title => 'Bienvenido', 
+            css => 'dist/login.min.css',
+            js_top => 'http://localhost:3000/',
+            js_bottom => 'dist/login.min.js',
+            data => encode_json \%data,
+        );
+
+        $self->render(template => 'login/index', variables => \%App::Config::Variables::Data, helper => \%helper);
+    }
 }
 
 sub acceder {
@@ -29,9 +35,12 @@ sub acceder {
     my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/validar?usuario=' . $usuario . '&contrasenia=' . $contrasenia;
 	my $client = REST::Client->new();
 	$client->POST($url);
-    $log->debug('1 +++++++++++++++++++++++++++++++++++++++++++++++++++++');
-    $log->debug($client->responseContent());
-    $log->debug('2 +++++++++++++++++++++++++++++++++++++++++++++++++++++');
+
+    if ($client->responseContent() == 1){
+        $self->session({autenticado => 1});
+        $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
+    }
+
     my %data = (
         mensaje => JSON::true
     ); 
@@ -42,6 +51,7 @@ sub acceder {
         js_bottom => 'dist/login.min.js',
         data => encode_json \%data,
     );
+
     $self->render(template => 'login/index', variables => \%App::Config::Variables::Data, helper => \%helper);
 }
 
