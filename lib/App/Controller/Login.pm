@@ -55,4 +55,22 @@ sub acceder {
     $self->render(template => 'login/index', variables => \%App::Config::Variables::Data, helper => \%helper);
 }
 
+sub salir{
+    my $self = shift;
+    my %data = (
+        mensaje => JSON::false
+    ); 
+    my %helper = (
+        title => 'Bienvenido', 
+        css => 'dist/login.min.css',
+        js_top => 'http://localhost:3000/',
+        js_bottom => 'dist/login.min.js',
+        data => encode_json \%data,
+    );
+
+    delete $self->session->{'autenticado'};
+
+    $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'login');
+}
+
 1;
