@@ -11,7 +11,12 @@
     </script>
 </head>
 <body>
-    <%= content %>
+    <script id="blank-template" type="text/x-handlebars-template">
+        {{> yield}}
+    </script>
+    <script id="yield" type="text/x-handlebars-template">
+        <%= content %>
+    </script>
     <script type="text/javascript" src="<%=%{$variables}{'STATIC_URL'}.%{$helper}{'js_bottom'} %>"></script>
 </body>
 </html>

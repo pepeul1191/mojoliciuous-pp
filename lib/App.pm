@@ -21,6 +21,7 @@ sub startup {
     # Normal route to controller
     $r->get('/')->to('example#welcome');
     $r->get('/login')->to('login#index');
+    $r->post('/login/acceder')->to('login#acceder');
 }
 
 1;
