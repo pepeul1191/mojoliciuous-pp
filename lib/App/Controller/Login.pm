@@ -4,12 +4,14 @@ use App::Config::Variables;
 use JSON;
 use Mojo::Log;
 use REST::Client;
+use Mojolicious::Validator;
 
 my $log = Mojo::Log->new;
 
 sub index {
     my $self = shift;
 
+    $log->debug('Not sure what is happening here');
     if ($self->session('autenticado' ) == 1){
         $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
     }else{
