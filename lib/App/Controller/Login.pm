@@ -4,7 +4,6 @@ use App::Config::Variables;
 use JSON;
 use Mojo::Log;
 use REST::Client;
-use Mojolicious::Validator;
 
 my $log = Mojo::Log->new;
 

@@ -7,7 +7,6 @@ my $log = Mojo::Log->new;
 sub register {
   my ($self, $app) = @_;
 
-  # Add "werewolf" condition
   $app->routes->add_condition(sesion_true => sub {
     my ($route, $c, $captures, $session) = @_;
          if ($session == 1){
