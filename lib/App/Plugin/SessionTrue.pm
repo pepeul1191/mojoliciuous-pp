@@ -1,0 +1,21 @@
+package App::Plugin::SessionTrue;
+use Mojo::Base 'Mojolicious::Plugin';
+use Mojo::Log;
+
+my $log = Mojo::Log->new;
+
+sub register {
+  my ($self, $app) = @_;
+
+  # Add "werewolf" condition
+  $app->routes->add_condition(sesion_true => sub {
+    my ($route, $c, $captures, $session) = @_;
+         if ($session == 1){
+            $c->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
+         }
+        #$log->debug('2 ++++++++++++++++++++++++++++++++++++++++++++');
+        return 1;
+  });
+}
+
+1;
