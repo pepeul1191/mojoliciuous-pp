@@ -9,8 +9,7 @@ my $log = Mojo::Log->new;
 
 sub index {
     my $self = shift;
-
-    $log->debug('Not sure what is happening here');
+    #$log->debug('Not sure what is happening here');
     if ($self->session('autenticado' ) == 1){
         $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
     }else{
@@ -39,7 +38,7 @@ sub acceder {
 
     if ($client->responseContent() == 1){
         $self->session({autenticado => 1});
-        $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
+        $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'});
     }
 
     my %data = (

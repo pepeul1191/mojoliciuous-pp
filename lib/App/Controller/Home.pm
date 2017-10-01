@@ -4,6 +4,7 @@ use App::Config::Variables;
 use JSON;
 use Mojo::Log;
 use REST::Client;
+use utf8;
 
 my $log = Mojo::Log->new;
 
@@ -16,16 +17,16 @@ sub index {
     }else{
         my %data = (
             mensaje => JSON::false,
-            titulo_pagina => 'Gestión de Libros', 
-            modulo => 'Libros'
+            titulo_pagina => 'Gestión de Accesos', 
+            modulo => 'Accesos'
         ); 
         my %helper = (
             title => 'Home', 
-            css => 'dist/libros.min.css',
+            css => 'dist/accesos.min.css',
             js_top => 'http://localhost:3000/',
-            js_bottom => 'dist/libros.min.js',
+            js_bottom => 'dist/accesos.min.js',
             menu => '[{"url" : "accesos", "nombre" : "Accesos"},{"url" : "libros", "nombre" : "Libros"}]', 
-            items => '[{"subtitulo":"Libros","items":[{"item":"Gestión de Categorías","url":"libros/#/categoria"},{"url":"libros/#/autor","item":"Gestión de Autores"},{"item":"Gestión de Libros","url":"libros/#"}]}]', 
+            items => '[{"subtitulo":"","items":[{"item":"Gestión de Sistemas","url":"#/sistema"}]}]', 
             data => encode_json \%data,
         );
 

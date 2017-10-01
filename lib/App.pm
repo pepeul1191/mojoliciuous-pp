@@ -19,14 +19,14 @@ sub startup {
     $self->plugin('App::Plugin::SessionTrue');
     # Router
     my $r = $self->routes;
-    # conditions
-
     # Normal route to controller
-    $r->get('/')->to('example#welcome');
+    $r->get('/')->to('home#index');
     $r->get('/login')->over(sesion_true => 0, sesion_true => 1)->to('login#index');
     $r->get('/salir')->to('login#salir');
     $r->post('/login/acceder')->to('login#acceder');
-    $r->get('/home')->to('home#index');
+    # Módulo de Accesos
+    $r->get('/accesos/sistema/listar')->to('acceso-sistema#listar');
+     $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
 }
 
 1;

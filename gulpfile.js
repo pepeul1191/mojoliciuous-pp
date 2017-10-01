@@ -145,23 +145,21 @@ gulp.task('app', function(){
     .pipe(livereload());
 });
 
-gulp.task('libros', function(){
+gulp.task('accesos', function(){
     gulp.start('fonts', 'layout-css', 'layout-js', 'swp-plugins');
     gulp.src([
         DESTINO + 'libs.min.js',  
         DESTINO + 'swp.js',
         MEDIA + 'layouts/app.js',  
-        //MEDIA + 'views/libros/_table_libro.js', 
-        MEDIA + 'views/libros/_table_autor.js', 
-        MEDIA + 'views/libros/_table_categoria.js', 
-        //MEDIA + 'views/libros/libro.js',  
-        MEDIA + 'views/libros/autor.js', 
-        MEDIA + 'views/libros/categoria.js', 
-        MEDIA + 'routes/libros.js'
+        MEDIA + 'views/accesos/_table_sistema.js', 
+        MEDIA + 'views/accesos/_table_menu.js', 
+        MEDIA + 'views/accesos/sistema.js',
+        MEDIA + 'views/accesos/menu.js', 
+        MEDIA + 'routes/accesos.js'
     ])
     //.pipe(uglify())
     .pipe(plumber())
-    .pipe(concatJs('libros.min.js'))
+    .pipe(concatJs('accesos.min.js'))
     .pipe(gulp.dest(DESTINO))//.pipe(gulp.dest(DESTINO + 'home'))
     .pipe(livereload());
 
@@ -170,6 +168,6 @@ gulp.task('libros', function(){
         DESTINO + 'swp.css'
     ])
     .pipe(plumber())
-    .pipe(concatCss('libros.min.css'))
+    .pipe(concatCss('accesos.min.css'))
     .pipe(gulp.dest(DESTINO));
   });
