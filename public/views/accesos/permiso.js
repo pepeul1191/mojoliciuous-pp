@@ -37,7 +37,7 @@ var PermisoView = Backbone.View.extend({
 		tablaPermisos.SetTableFooter(array_json_btn_permiso, false);
 		tablaPermisos.SetLabelMensaje("#txtMensajeRptaModal");
 		//tablaPermisos.SetExtraData(array_extra_data_modulo);
-		tablaPermisos.SetURLGuardar(BASE_URL + "accesos/modulo/guardar");
+		tablaPermisos.SetURLGuardar(BASE_URL + "accesos/permiso/guardar");
 
 	   	tablaPermisos.MostrarTable();
 	}

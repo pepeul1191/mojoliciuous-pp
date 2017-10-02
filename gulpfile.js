@@ -153,7 +153,7 @@ gulp.task('accesos', function(){
         MEDIA + 'layouts/app.js',  
         MEDIA + 'views/accesos/_table_sistema.js', 
         MEDIA + 'views/accesos/_table_menu.js', 
-        MEDIA + 'views/accesos/_table_roljs', 
+        MEDIA + 'views/accesos/_table_rol.js', 
         MEDIA + 'views/accesos/_table_permiso.js', 
         MEDIA + 'views/accesos/sistema.js',
         MEDIA + 'views/accesos/menu.js', 

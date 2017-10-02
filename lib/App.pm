@@ -28,6 +28,7 @@ sub startup {
     $r->get('/accesos/item/listar/:subtitulo_id')->to('acceso-item#listar');
     $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
     $r->get('/accesos/permiso/listar/:sistema_id')->to('acceso-permiso#listar');
+    $r->get('/accesos/rol/listar/:sistema_id')->to('acceso-rol#listar');
     $r->get('/accesos/sistema/listar')->to('acceso-sistema#listar');
     $r->get('/accesos/subtitulo/listar/:modulo_id')->to('acceso-subtitulo#listar');
 }
