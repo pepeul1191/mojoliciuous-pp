@@ -18,4 +18,14 @@ sub listar {
     $self->render(text => $rpta);
 }
 
+sub listar_asociados {
+    my $self = shift;
+    my $rol_id = $self->param('rol_id');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'permiso/listar_asociados/' . $rol_id;
+	my $client = REST::Client->new(); $client->GET($url);
+    my $rpta = $client->responseContent();
+
+    $self->render(text => $rpta);
+}
+
 1;
