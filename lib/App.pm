@@ -26,7 +26,8 @@ sub startup {
     $r->post('/login/acceder')->to('login#acceder');
     # Módulo de Accesos
     $r->get('/accesos/sistema/listar')->to('acceso-sistema#listar');
-     $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
+    $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
+    $r->get('/accesos/subtitulo/listar/:modulo_id')->to('acceso-subtitulo#listar');
 }
 
 1;

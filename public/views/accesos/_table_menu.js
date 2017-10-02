@@ -44,7 +44,6 @@ var MostrarSubtitulos = new Class({
         //implementación de IChainOperacion
         //console.log("MostrarSubtitulos");
         var id_modulo = thisDOM.parent().parent().children(0).children(0).html();
-
         if(operacion == "MostrarSubtitulos"){
         	tablaSubtitulos.BorrarTable();
         	tablaItems.BorrarTable();
@@ -74,10 +73,8 @@ var MostrarSubtitulos = new Class({
 			var array_extra_data = [
 				{tipo: "label", llave: "id_modulo", id : "id_modulo"}
 			];
-
 			var ajax_subtitulos = new AjaxPython(); 
-			ajax_subtitulos.Constructor("GET", BASE_URL + "subtitulo/listar/" + id_modulo, "", false);
-
+			ajax_subtitulos.Constructor("GET", BASE_URL + "accesos/subtitulo/listar/" + id_modulo, "", false);
 			tablaSubtitulos.SetTableId("tablaSubtitulos");
 			tablaSubtitulos.SetTableObj("tablaSubtitulos");
 			tablaSubtitulos.SetTableHeader(array_json_th);
@@ -89,7 +86,7 @@ var MostrarSubtitulos = new Class({
 
 			$("#id_modulo").html(id_modulo);
           	tablaSubtitulos.MostrarTable();
-          	//ObservadorConcreto.NotificarObservadores(objeto.observador, tipo_arreglo, id_fila);
+          	          	//ObservadorConcreto.NotificarObservadores(objeto.observador, tipo_arreglo, id_fila);
         }else{
              try {
               this.SiguienteEslabon(operacion, thisDOM, objeto);
@@ -146,7 +143,7 @@ var MostrarItems = new Class({
 			];
 			
 			var ajax_dao_subtitulos = new AjaxPython(); 
-			ajax_dao_subtitulos.Constructor("GET", BASE_URL + "item/listar/" + id_subtitulo, "", false);
+			ajax_dao_subtitulos.Constructor("GET", BASE_URL + "accesos/item/listar/" + id_subtitulo, "", false);
 
 			tablaItems.SetTableId("tablaItems");
 			tablaItems.SetTableObj("tablaItems");
