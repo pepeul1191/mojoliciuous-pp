@@ -1,3 +1,5 @@
+var tablaSistema = new Grid();
+
 var SistemaView = Backbone.View.extend({
 	el: '#workspace',
 	initialize: function(){
@@ -25,7 +27,6 @@ var SistemaView = Backbone.View.extend({
 	mostrarTabla: function(){
 	   	var ajax_dao_sistema = new AjaxPython(); 
 	   	ajax_dao_sistema.Constructor("GET", BASE_URL + "accesos/sistema/listar", "", false);
-	   	var tablaSistema = new Grid();
 	   	tablaSistema.SetTableId("tablaSistema");
 	   	tablaSistema.SetTableObj("tablaSistema");
 	   	tablaSistema.SetTableHeader(sistema_array_json_th);

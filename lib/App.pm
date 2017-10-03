@@ -24,13 +24,20 @@ sub startup {
     $r->get('/login')->over(sesion_true => 0, sesion_true => 1)->to('login#index');
     $r->get('/salir')->to('login#salir');
     $r->post('/login/acceder')->to('login#acceder');
-    # Módulo de Accesos
+    # Accesos
+    # Accesos / Item
     $r->get('/accesos/item/listar/:subtitulo_id')->to('acceso-item#listar');
+    # Accesos / Modulo
     $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
+    # Accesos / Permiso
     $r->get('/accesos/permiso/listar/:sistema_id')->to('acceso-permiso#listar');
     $r->get('/accesos/permiso/listar_asociados/:rol_id')->to('acceso-permiso#listar_asociados');
+    # Accesos / Rol
     $r->get('/accesos/rol/listar/:sistema_id')->to('acceso-rol#listar');
+    # Accesos / Sistema
     $r->get('/accesos/sistema/listar')->to('acceso-sistema#listar');
+    $r->post('/accesos/sistema/guardar')->to('acceso-sistema#guardar');
+    # Accesos / Subtitulo
     $r->get('/accesos/subtitulo/listar/:modulo_id')->to('acceso-subtitulo#listar');
 }
 
