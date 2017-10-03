@@ -30,8 +30,8 @@
 
 Para imprimir variables:
 
-        #print("\nA\n");print($url);print("\nB\n");
-        #print("\n");print Dumper(%temp);print("\n");
+    #print("\nA\n");print($url);print("\nB\n");
+    #print("\n");print Dumper(%temp);print("\n");
 
 ### Gulp para las vistas
 

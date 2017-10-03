@@ -33,7 +33,7 @@ var SistemaView = Backbone.View.extend({
 	   	tablaSistema.SetTableBody(sistema_array_json_td, sistema_array_json_btn_td, ajax_dao_sistema);
 	   	tablaSistema.SetTableFooter(sistema_array_json_btn, false);
 	   	tablaSistema.SetLabelMensaje("#txtMensajeRpta");
-	   	tablaSistema.SetURLGuardar(BASE_URL + "libros/autor/guardar");
+	   	tablaSistema.SetURLGuardar(BASE_URL + "accesos/sistema/guardar");
 
 	   	tablaSistema.MostrarTable();
 	}
