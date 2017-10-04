@@ -8,8 +8,9 @@
         var BASE_URL = '<%=%{$variables}{"BASE_URL"}%>';
         var STATICS_URL  = '<%=%{$variables}{"STATIC_URL"}%>';
         var MODULOS_JSON = JSON.parse('<%== %{$helper}{"menu"} %>');
-		var ITEMS_JSON = JSON.parse('<%== %{$helper}{"items"} %>');
-        var DATA = JSON.parse('<%== %{$helper}{"data"} %>'); 
+        var ITEMS_JSON = JSON.parse('<%== %{$helper}{"items"} %>');
+        var DATA = JSON.parse('<%== %{$helper}{"data"} %>');
+        var CSRF = null;
     </script>
 </head>
 <body>
