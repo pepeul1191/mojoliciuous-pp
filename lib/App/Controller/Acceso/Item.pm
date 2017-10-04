@@ -18,4 +18,14 @@ sub listar {
     $self->render(text => $rpta);
 }
 
+sub guardar {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'item/guardar?data=' . $data;
+	my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = $client->responseContent();
+
+    $self->render(text => $rpta);
+}
+
 1;

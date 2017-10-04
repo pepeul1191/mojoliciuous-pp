@@ -26,10 +26,6 @@ var tablaModulos = new Grid();
 var tablaSubtitulos = new Grid();
 var tablaItems = new Grid();
 
-var array_extra_data_modulo = [
-	{tipo: "label", llave: "sistema_id", id : "sistema_id"}
-];
-
 var MostrarSubtitulos = new Class({
     Interfaces: [ IChainOperacion ],
     SetearSiguienteInstancia: function(instancia){

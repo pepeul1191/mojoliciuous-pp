@@ -28,6 +28,9 @@ var MenuView = Backbone.View.extend({
 	},
 	mostrarTabla: function(sistema_id){
 		tablaModulos.BorrarTable();
+		var array_extra_data_modulo = [
+			{tipo: "label", llave: "sistema_id", id : "txtIdeSistema"}
+		];	
 		var ajax_modulo = new AjaxPython(); 
 		ajax_modulo.Constructor("GET", BASE_URL + "accesos/modulo/listar/" + sistema_id, "", false);
 	   	tablaModulos.SetTableId("tablaModulos");

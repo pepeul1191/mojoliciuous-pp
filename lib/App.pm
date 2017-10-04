@@ -27,8 +27,10 @@ sub startup {
     # Accesos
     # Accesos / Item
     $r->get('/accesos/item/listar/:subtitulo_id')->to('acceso-item#listar');
+    $r->post('/accesos/item/guardar')->to('acceso-item#guardar');
     # Accesos / Modulo
     $r->get('/accesos/modulo/listar/:sistema_id')->to('acceso-modulo#listar');
+    $r->post('/accesos/modulo/guardar')->to('acceso-modulo#guardar');
     # Accesos / Permiso
     $r->get('/accesos/permiso/listar/:sistema_id')->to('acceso-permiso#listar');
     $r->get('/accesos/permiso/listar_asociados/:rol_id')->to('acceso-permiso#listar_asociados');
@@ -39,6 +41,7 @@ sub startup {
     $r->post('/accesos/sistema/guardar')->to('acceso-sistema#guardar');
     # Accesos / Subtitulo
     $r->get('/accesos/subtitulo/listar/:modulo_id')->to('acceso-subtitulo#listar');
+    $r->post('/accesos/subtitulo/guardar')->to('acceso-subtitulo#guardar');
 }
 
 1;
