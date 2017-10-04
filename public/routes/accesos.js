@@ -25,16 +25,19 @@ var Router = Marionette.AppRouter.extend({
     showSistemaMenu: function(sistema_id){
         var menuView = new MenuView({});
         menuView.render();
+        $("#txtIdeSistema").html(sistema_id);
         menuView.mostrarTabla(sistema_id);
     },
     showSistemaPermiso: function(sistema_id){
         var permisoView = new PermisoView({});
         permisoView.render();
+        $("#txtIdeSistema").html(sistema_id);
         permisoView.mostrarTabla(sistema_id);
     },
     showSistemaRol: function(sistema_id){
         var rolView = new RolView({});
         rolView.render();
+        $("#txtIdeSistema").html(sistema_id);
         rolView.mostrarTabla(sistema_id);
     },
 });
