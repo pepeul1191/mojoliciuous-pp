@@ -69,6 +69,7 @@ var MostrarSubtitulos = new Class({
 			var array_extra_data = [
 				{tipo: "label", llave: "id_modulo", id : "id_modulo"}
 			];
+
 			var ajax_subtitulos = new AjaxPython(); 
 			ajax_subtitulos.Constructor("GET", BASE_URL + "accesos/subtitulo/listar/" + id_modulo, "", false);
 			tablaSubtitulos.SetTableId("tablaSubtitulos");

@@ -27,6 +27,10 @@ var PermisoView = Backbone.View.extend({
 		return template_compiled;
 	},
 	mostrarTabla: function(sistema_id){
+		var array_extra_data= [
+			{tipo: "label", llave: "sistema_id", id : "txtIdeSistema"}
+		];	
+
 		tablaPermisos.BorrarTable();
 		var ajax_permiso = new AjaxPython(); 
 		ajax_permiso.Constructor("GET", BASE_URL + "accesos/permiso/listar/" + sistema_id, "", false);
@@ -36,7 +40,7 @@ var PermisoView = Backbone.View.extend({
 		tablaPermisos.SetTableBody(array_json_td_permiso, array_json_btn_td_permiso, ajax_permiso);
 		tablaPermisos.SetTableFooter(array_json_btn_permiso, false);
 		tablaPermisos.SetLabelMensaje("#txtMensajeRptaModal");
-		//tablaPermisos.SetExtraData(array_extra_data_modulo);
+		tablaPermisos.SetExtraData(array_extra_data);
 		tablaPermisos.SetURLGuardar(BASE_URL + "accesos/permiso/guardar");
 
 	   	tablaPermisos.MostrarTable();
