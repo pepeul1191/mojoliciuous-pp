@@ -28,6 +28,9 @@ var RolView = Backbone.View.extend({
 	},
 	mostrarTabla: function(sistema_id){
 		tablaRoles.BorrarTable();
+		var array_extra_data_rol = [
+			{tipo: "label", llave: "sistema_id", id : "txtIdeSistema"}
+		];	
 		var ajax_rol = new AjaxPython(); 
 		ajax_rol.Constructor("GET", BASE_URL + "accesos/rol/listar/" + sistema_id, "", false);
 		tablaRoles.SetTableId("tablaRoles");
@@ -36,8 +39,8 @@ var RolView = Backbone.View.extend({
 		tablaRoles.SetTableBody(array_json_td_rol, array_json_btn_td_rol, ajax_rol);
 		tablaRoles.SetTableFooter(array_json_btn_rol, false);
 		tablaRoles.SetLabelMensaje("#txtMensajeRptaModal");
-		//tablaRoles.SetExtraData(array_extra_data_rol);
-		tablaRoles.SetURLGuardar(BASE_URL + "accesos/modulo/guardar");
+		tablaRoles.SetExtraData(array_extra_data_rol);
+		tablaRoles.SetURLGuardar(BASE_URL + "accesos/rol/guardar");
 
 		tablaRoles.MostrarTable();
 	}

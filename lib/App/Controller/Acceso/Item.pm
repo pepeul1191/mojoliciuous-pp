@@ -12,7 +12,7 @@ sub listar {
     my $self = shift;
     my $subtitulo_id = $self->param('subtitulo_id');
     my $url = %App::Config::Variables::Data{'accesos'} . 'item/listar/' . $subtitulo_id;
-	my $client = REST::Client->new(); $client->GET($url);
+    my $client = REST::Client->new(); $client->GET($url);
     my $rpta = $client->responseContent();
 
     $self->render(text => $rpta);
@@ -22,7 +22,7 @@ sub guardar {
     my $self = shift;
     my $data = $self->param('data');
     my $url = %App::Config::Variables::Data{'accesos'} . 'item/guardar?data=' . $data;
-	my $client = REST::Client->new(); $client->POST($url);
+    my $client = REST::Client->new(); $client->POST($url);
     my $rpta = $client->responseContent();
 
     $self->render(text => $rpta);

@@ -10,7 +10,7 @@
         var MODULOS_JSON = JSON.parse('<%== %{$helper}{"menu"} %>');
         var ITEMS_JSON = JSON.parse('<%== %{$helper}{"items"} %>');
         var DATA = JSON.parse('<%== %{$helper}{"data"} %>');
-        var CSRF = null;
+        var CSRF = null;    
     </script>
 </head>
 <body>
