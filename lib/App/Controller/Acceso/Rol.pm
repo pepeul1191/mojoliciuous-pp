@@ -28,4 +28,14 @@ sub guardar {
     $self->render(text => $rpta);
 }
 
+sub asociar_permisos {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'rol/asociar_permisos?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = $client->responseContent();
+
+    $self->render(text => $rpta);
+}
+
 1;

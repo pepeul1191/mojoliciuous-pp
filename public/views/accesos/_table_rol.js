@@ -40,6 +40,7 @@ var MostrarRoles = new Class({
         //implementación de IChainOperacion
         //console.log("MostrarRoles");
         var id_rol = thisDOM.parent().parent().children(0).children(0).html();
+
         if(operacion == "MostrarRoles"){
         	        	tablaPermisos.BorrarTable();
 
@@ -65,7 +66,7 @@ var MostrarRoles = new Class({
 			];
 
 			var array_extra_data = [
-				{tipo: "label", llave: "id_rol", id : "id_rol"}
+				{tipo: "label", llave: "id_rol", id : "idRol"}
 			];
 			
 			var ajax_dao_permisos = new AjaxPython(); 
@@ -80,7 +81,7 @@ var MostrarRoles = new Class({
 			tablaPermisos.SetExtraData(array_extra_data);
 			tablaPermisos.SetLabelMensaje("#txtMensajeRpta");
 
-			$("#id_rol").html(id_rol);
+			$("#idRol").html(id_rol);
            
           tablaPermisos.MostrarTable();
         }else{

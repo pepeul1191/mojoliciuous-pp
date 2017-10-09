@@ -38,6 +38,7 @@ sub startup {
     # Accesos / Rol
     $r->get('/accesos/rol/listar/:sistema_id')->to('acceso-rol#listar');
     $r->post('/accesos/rol/guardar')->to('acceso-rol#guardar');
+    $r->post('/accesos/rol/asociar_permisos')->to('acceso-rol#asociar_permisos');
     # Accesos / Sistema
     $r->get('/accesos/sistema/listar')->to('acceso-sistema#listar');
     $r->post('/accesos/sistema/guardar')->to('acceso-sistema#guardar');
