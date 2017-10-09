@@ -20,8 +20,9 @@ sub listar {
 
 sub listar_asociados {
     my $self = shift;
+    my $sistema_id = $self->param('sistema_id');
     my $rol_id = $self->param('rol_id');
-    my $url = %App::Config::Variables::Data{'accesos'} . 'permiso/listar_asociados/' . $rol_id;
+    my $url = %App::Config::Variables::Data{'accesos'} . 'permiso/listar_asociados/' . $sistema_id . '/' . $rol_id;
 	my $client = REST::Client->new(); $client->GET($url);
     my $rpta = $client->responseContent();
 

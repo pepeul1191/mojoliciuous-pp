@@ -69,7 +69,7 @@ var MostrarRoles = new Class({
 			];
 			
 			var ajax_dao_permisos = new AjaxPython(); 
-			ajax_dao_permisos.Constructor("GET", BASE_URL + "accesos/permiso/listar_asociados/" + id_rol, "", false);
+			ajax_dao_permisos.Constructor("GET", BASE_URL + "accesos/permiso/listar_asociados/" + $("#txtIdeSistema").html() + "/" + id_rol, "", false);
 
 			tablaPermisos.SetTableId("tablaPermisos");
 			tablaPermisos.SetTableObj("tablaPermisos");
