@@ -5,6 +5,8 @@ use JSON;
 use Mojo::Log;
 use REST::Client;
 use utf8;
+use Encode qw(decode encode);
+binmode STDOUT, ':utf8';
 
 my $log = Mojo::Log->new;
 
@@ -13,7 +15,7 @@ sub listar {
     my $subtitulo_id = $self->param('subtitulo_id');
     my $url = %App::Config::Variables::Data{'accesos'} . 'item/listar/' . $subtitulo_id;
     my $client = REST::Client->new(); $client->GET($url);
-    my $rpta = $client->responseContent();
+    my $rpta = decode('utf8', $client->responseContent());
 
     $self->render(text => $rpta);
 }
