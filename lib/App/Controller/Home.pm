@@ -5,6 +5,8 @@ use JSON;
 use Mojo::Log;
 use REST::Client;
 use utf8;
+use Encode qw(decode encode);
+binmode STDOUT, ':utf8';
 
 my $log = Mojo::Log->new;
 
@@ -27,7 +29,7 @@ sub index {
             js_bottom => 'dist/accesos.min.js',
             menu => '[{"url" : "accesos", "nombre" : "Accesos"},{"url" : "libros", "nombre" : "Libros"}]', 
             items => '[{"subtitulo":"","items":[{"item":"Gestión de Sistemas","url":"#/sistema"},{"item":"Gestión de Usuarios","url":"#/usuario"}]}]', 
-            data => encode_json \%data,
+            data => decode('utf8', encode_json \%data),
         );
 
         $self->render(template => 'home/index', variables => \%App::Config::Variables::Data, helper => \%helper);

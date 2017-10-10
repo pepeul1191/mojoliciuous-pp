@@ -24,8 +24,8 @@ sub guardar {
     my $self = shift;
     my $data = $self->param('data');
     my $url = %App::Config::Variables::Data{'accesos'} . 'modulo/guardar?data=' . $data;
-	my $client = REST::Client->new(); $client->POST($url);
-    my $rpta = $client->responseContent();
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
 
     $self->render(text => $rpta);
 }

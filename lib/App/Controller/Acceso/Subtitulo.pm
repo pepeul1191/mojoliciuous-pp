@@ -25,7 +25,7 @@ sub guardar {
     my $data = $self->param('data');
     my $url = %App::Config::Variables::Data{'accesos'} . 'subtitulo/guardar?data=' . $data;
     my $client = REST::Client->new(); $client->POST($url);
-    my $rpta = $client->responseContent();
+    my $rpta = decode('utf8', $client->responseContent());
 
     $self->render(text => $rpta);
 }
