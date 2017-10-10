@@ -25,6 +25,7 @@ var SistemaView = Backbone.View.extend({
 		return template_compiled;
 	},
 	mostrarTabla: function(){
+		tablaSistema.BorrarTable();
 	   	var ajax_dao_sistema = new AjaxPython(); 
 	   	ajax_dao_sistema.Constructor("GET", BASE_URL + "accesos/sistema/listar", "", false);
 	   	tablaSistema.SetTableId("tablaSistema");
