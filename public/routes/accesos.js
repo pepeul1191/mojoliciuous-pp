@@ -11,7 +11,7 @@ var Router = Marionette.AppRouter.extend({
         "accesos/sistemas/menu/:sistema_id" : "showSistemaMenu",
         "accesos/sistemas/permiso/:sistema_id" : "showSistemaPermiso",
         "accesos/sistemas/rol/:sistema_id" : "showSistemaRol",
-        "usuario" : "usuaruioIndex",
+        "usuario" : "usuarioIndex",
         "*actions" : "index"
     },
     showEmail: function(email) {
@@ -24,9 +24,9 @@ var Router = Marionette.AppRouter.extend({
         sistemaView.mostrarTabla();
     },
     usuarioIndex: function(){
-        var sistemaView = new SistemaView({});
-        sistemaView.render();
-        sistemaView.mostrarTabla();
+        var usuarioView = new UsuarioView({});
+        usuarioView.render();
+        usuarioView.mostrarTabla();
     },
     showSistemaMenu: function(sistema_id){
         var menuView = new MenuView({});

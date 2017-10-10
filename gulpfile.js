@@ -151,6 +151,7 @@ gulp.task('accesos', function(){
         DESTINO + 'libs.min.js',  
         DESTINO + 'swp.js',
         MEDIA + 'layouts/app.js',  
+        MEDIA + 'views/accesos/_table_usuario.js', 
         MEDIA + 'views/accesos/_table_sistema.js', 
         MEDIA + 'views/accesos/_table_menu.js', 
         MEDIA + 'views/accesos/_table_rol.js', 
@@ -159,6 +160,7 @@ gulp.task('accesos', function(){
         MEDIA + 'views/accesos/menu.js', 
         MEDIA + 'views/accesos/rol.js', 
         MEDIA + 'views/accesos/permiso.js', 
+        MEDIA + 'views/accesos/usuario.js', 
         MEDIA + 'routes/accesos.js'
     ])
     //.pipe(uglify())
