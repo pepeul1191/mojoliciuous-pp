@@ -5,7 +5,6 @@ use JSON;
 use Mojo::Log;
 use REST::Client;
 use utf8;
-use Encode qw( encode_utf8 );
 use Encode qw(decode encode);
 binmode STDOUT, ':utf8';
 
