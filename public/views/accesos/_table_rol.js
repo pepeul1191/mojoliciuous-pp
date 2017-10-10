@@ -79,7 +79,7 @@ var MostrarRoles = new Class({
 			tablaPermisos.SetTableFooter(array_json_btn, false);
 			tablaPermisos.SetURLGuardar(BASE_URL + "accesos/rol/asociar_permisos");
 			tablaPermisos.SetExtraData(array_extra_data);
-			tablaPermisos.SetLabelMensaje("#txtMensajeRpta");
+			tablaPermisos.SetLabelMensaje("#txtMensajeRptaModal");
 
 			$("#idRol").html(id_rol);
            

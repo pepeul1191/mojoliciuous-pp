@@ -26,7 +26,7 @@ sub index {
             js_top => 'http://localhost:3000/',
             js_bottom => 'dist/accesos.min.js',
             menu => '[{"url" : "accesos", "nombre" : "Accesos"},{"url" : "libros", "nombre" : "Libros"}]', 
-            items => '[{"subtitulo":"","items":[{"item":"Gestión de Sistemas","url":"#/sistema"}]}]', 
+            items => '[{"subtitulo":"","items":[{"item":"Gestión de Sistemas","url":"#/sistema"},{"item":"Gestión de Usuarios","url":"#/usuario"}]}]', 
             data => encode_json \%data,
         );
 
