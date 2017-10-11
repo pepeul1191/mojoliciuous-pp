@@ -12,6 +12,7 @@ var Router = Marionette.AppRouter.extend({
         "accesos/sistemas/permiso/:sistema_id" : "showSistemaPermiso",
         "accesos/sistemas/rol/:sistema_id" : "showSistemaRol",
         "accesos/usuario/logs/:usuario_id" : "showUsuarioLog",
+        "accesos/usuario/editar/:usuario_id" : "showUsuarioDetalle", 
         "usuario" : "usuarioIndex",
         "*actions" : "index"
     },
@@ -51,6 +52,11 @@ var Router = Marionette.AppRouter.extend({
         var logView = new LogView({});
         logView.render();
         logView.mostrarTabla(usuario_id);
+    },
+    showUsuarioDetalle: function(usuario_id){
+        var usuarioDetalleView = new UsuarioDetalleView({});
+        usuarioDetalleView.render();
+        //usuarioDetalleView.mostrarTabla(usuario_id);
     },
 });
     

@@ -38,11 +38,7 @@ sub acceder {
 
     if ($client->responseContent() == 1){
         $self->session({autenticado => 1});
-        $log->debug('1 +++++++++++++++++++++++++++++++++++++++++++++');
-        $log->debug('Not sure what is happening here');
-        $log->debug('2 +++++++++++++++++++++++++++++++++++++++++++++');
         $self->redirect_to(%App::Config::Variables::Data{'BASE_URL'});
-        $log->debug('3 +++++++++++++++++++++++++++++++++++++++++++++');
     }else{
         my %data = (
             mensaje => JSON::true
