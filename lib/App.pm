@@ -47,6 +47,7 @@ sub startup {
     $r->post('/accesos/subtitulo/guardar')->to('acceso-subtitulo#guardar');
     # Accesos / Usuario
     $r->get('/accesos/usuario/listar')->to('acceso-usuario#listar');
+    $r->get('/accesos/usuario/logs/:usuario_id')->to('acceso-usuario#logs');
 }
 
 1;

@@ -19,4 +19,14 @@ sub listar {
     $self->render(text => $rpta);
 }
 
+sub logs {
+    my $self = shift;
+    my $usuario_id = $self->param('usuario_id');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/listar_accesos/' . $usuario_id;
+    my $client = REST::Client->new(); $client->GET($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
 1;

@@ -156,11 +156,13 @@ gulp.task('accesos', function(){
         MEDIA + 'views/accesos/_table_menu.js', 
         MEDIA + 'views/accesos/_table_rol.js', 
         MEDIA + 'views/accesos/_table_permiso.js', 
+        MEDIA + 'views/accesos/_table_log.js', 
         MEDIA + 'views/accesos/sistema.js',
         MEDIA + 'views/accesos/menu.js', 
         MEDIA + 'views/accesos/rol.js', 
         MEDIA + 'views/accesos/permiso.js', 
         MEDIA + 'views/accesos/usuario.js', 
+        MEDIA + 'views/accesos/log.js', 
         MEDIA + 'routes/accesos.js'
     ])
     //.pipe(uglify())
