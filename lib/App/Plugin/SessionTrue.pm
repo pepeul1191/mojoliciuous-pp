@@ -10,7 +10,7 @@ sub register {
   $app->routes->add_condition(sesion_true => sub {
     my ($route, $c, $captures, $session) = @_;
          if ($session == 1){
-            $c->redirect_to(%App::Config::Variables::Data{'BASE_URL'} . 'home');
+            $c->redirect_to(%App::Config::Variables::Data{'BASE_URL'});
          }
         #$log->debug('2 ++++++++++++++++++++++++++++++++++++++++++++');
         return 1;

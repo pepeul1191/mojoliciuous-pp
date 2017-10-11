@@ -21,8 +21,8 @@ sub startup {
     my $r = $self->routes;
     # Normal route to controller
     $r->get('/')->to('home#index');
-    $r->get('/login')->over(sesion_true => 0, sesion_true => 1)->to('login#index');
-    $r->get('/salir')->to('login#salir');
+    $r->get('/login')->over(sesion_true => 0)->to('login#index');
+    $r->get('/login/cerrar')->to('login#salir');
     $r->post('/login/acceder')->to('login#acceder');
     # Accesos
     # Accesos / Item
