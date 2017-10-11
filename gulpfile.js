@@ -164,6 +164,7 @@ gulp.task('accesos', function(){
         MEDIA + 'views/accesos/usuario.js', 
         MEDIA + 'views/accesos/log.js', 
         MEDIA + 'views/accesos/usuario_detalle.js', 
+        MEDIA + 'views/accesos/_form_usuario.js', 
         MEDIA + 'routes/accesos.js'
     ])
     //.pipe(uglify())
