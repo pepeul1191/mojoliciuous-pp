@@ -55,7 +55,8 @@ var Router = Marionette.AppRouter.extend({
     },
     showUsuarioDetalle: function(usuario_id){
         var usuarioDetalleView = new UsuarioDetalleView({});
-        usuarioDetalleView.render();
+        usuarioDetalleView.render(usuario_id);
+        $("#idUsuario").html(usuario_id);
         //usuarioDetalleView.mostrarTabla(usuario_id);
     },
 });

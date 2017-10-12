@@ -7,8 +7,11 @@ var UsuarioDetalleView = Backbone.View.extend({
 	render: function(){
 		$("#btnModal").click(); 
 		this.$el.html(this.getTemplate());
+		var usuario = new Usuario();
+		var formUsuarioView = new FormUsuarioView({model:usuario});
+		formUsuarioView.render();
 	}, 
-	getTemplate: function() {
+	getTemplate: function(usuario_id) {
 		var data = { };
 		var template_compiled = null;
 		$.ajax({
@@ -16,8 +19,8 @@ var UsuarioDetalleView = Backbone.View.extend({
 		   type: "GET", 
 		   async: false, 
 		   success: function(source) {
-		   	var template = Handlebars.compile(source);
-		   	template_compiled = template(data);
+			   	var template = Handlebars.compile(source);
+			   	template_compiled = template(data);
 		   }
 		});
 		return template_compiled;
@@ -34,7 +37,6 @@ var UsuarioDetalleView = Backbone.View.extend({
 		tablaLogs.SetLabelMensaje("#txtMensajeRptaModal");
 		//tablaLogs.SetExtraData(array_extra_data_rol);
 		//tablaLogs.SetURLGuardar(BASE_URL + "accesos/rol/guardar");
-
 		tablaLogs.MostrarTable();
 	}
 });

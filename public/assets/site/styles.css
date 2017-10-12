@@ -17,7 +17,9 @@ label{font-weight: 500;}
 .sky-form {margin: 0; outline: none;color: #666;}
 .sky-form header {color: inherit; display: block;font-size: 20px;background: #fff; font-weight: 400; padding: 8px 20px; border-bottom: 1px solid #eee;}
 .sky-form fieldset {display: block; padding: 20px 10px 20px;border: none;}
+.modal-body {padding-left: 35px; padding-right: 35px;}
 .btn-default > i {margin-right: 5px}
+.texto-validacion{color:#a94442; padding-left: 10px;}
 /* Inicio Global */
 @media (min-width: 1200px){
     .container {width: 99%;}

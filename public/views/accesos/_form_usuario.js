@@ -1,24 +1,28 @@
 var FormUsuarioView = Backbone.View.extend({
 	el: '#formUsuario',
 	initialize: function(){
-
 	},
 	events: {
 	    "keyup #txtUsuario": "validarUsuarioRepetido", 
 	    "focusout #txtUsuario": "validarUsuarioLleno", 
 	    "keyup #txtCorreo": "validarCorreoRepetido", 
 	    "focusout #txtCorreo": "validarCorreoFormato", 
-	    "focusout #txtCorreoRepetir": "validarCorreoIgual", 
-	    "focusout #txtContrasenia": "validarContraseniaIgual", 
-	    "focusout #txtContraseniaRepetir": "validarContraseniaIgual", 
-	    "click #btnGuardarPaso1": "GuardarPaso1"
+	    "focusout #txtContraseniaAntgua": "validarContraseniaLleno", 
+	    "focusout #txtContraseniaNueva": "validarContraseniaAntiguaDiferente", 
+	    "focusout #txtContraseniaNuevaRepetida": "validarContraseniaIgual", 
+	    "click #btnGuardarUsuarioCorreo": "guardarUsuarioCorreo",
+	    "click #btnCambiarContrasenia": "cambiarContrasenia"
 	},
 	validarUsuarioRepetido: function(event) {
 		var usuario_valido_valor;
+		var usuario_temp = new Object();
+	   usuario_temp.id = $("#idUsuario").html();
+	   usuario_temp.usuario  = $("#txtUsuario").val(),
+
      	$.ajax({
      		type: "POST",
-     		url: BASE_URL + "registro/validar_usuario_repetido",
-     		data: "nombre=" + $("#txtUsuario").val(),
+     		url: BASE_URL + "accesos/usuario/nombre_repetido",
+     		data: "data=" + JSON.stringify(usuario_temp),
      		async: false,
      		success: function(data){
      			if(data >= 1){
@@ -32,7 +36,9 @@ var FormUsuarioView = Backbone.View.extend({
      			}
      		},
      		error: function(data){
-     			//FALTA MANEJAR EL ERROR DEL AJAX
+     			$("#txtUsuario").parent().addClass("has-error");
+     			$("#txtUsuario").parent().find("span").html("Error: No se podido validar si el usuario está en uso");
+     			correo_valido_valor = false;
      		}
      	});
      	this.model.set({usuario_valido : usuario_valido_valor});
@@ -54,7 +60,7 @@ var FormUsuarioView = Backbone.View.extend({
 		var correo_valido_valor;
      	$.ajax({
      		type: "POST",
-     		url: BASE_URL + "registro/validar_correo_repetido",
+     		url: BASE_URL + "accesos/usuario/correo_repetido",
      		data: "correo=" + $("#txtCorreo").val(),
      		async: false,
      		success: function(data){
@@ -69,25 +75,13 @@ var FormUsuarioView = Backbone.View.extend({
      			}
      		},
      		error: function(data){
-     			//FALTA MANEJAR EL ERROR DEL AJAX
+     			$("#txtCorreo").parent().addClass("has-error");
+     			$("#txtCorreo").parent().find("span").html("Error: No se podido validar si el correo está en uso");
+     			correo_valido_valor = false;
      		}
      	});
      	this.model.set({correo_valido : correo_valido_valor});
 	},
-	validarCorreoIgual: function(event) {
-		if($("#txtCorreoRepetir").val() != ""){
-			if($("#txtCorreo").val() != $("#txtCorreoRepetir").val()){
-				$("#txtCorreoRepetir").parent().addClass("has-error");
-      		$("#txtCorreoRepetir").parent().find("span").html("El correo ingresado no coincide con el primero");
-      		this.model.set({correo_valido : false});
-			}else{
-				$("#txtCorreoRepetir").parent().removeClass("has-error");
-      		$("#txtCorreoRepetir").parent().find("span").html("");
-      		this.model.set({correo_valido : true});
-			}
-		}
-		this.validarCorreoFormato();
-	}, 
 	validarCorreoLleno: function(event) {
 		if($("#txtCorreo").val() == ""){
 			$("#txtCorreo").parent().addClass("has-error");
@@ -95,40 +89,45 @@ var FormUsuarioView = Backbone.View.extend({
      		this.model.set({correo_valido : false});
 		}
 	}, 
-	validarCorreoRepetidoLleno: function(event) {
-		if($("#txtCorreoRepetir").val() == ""){
-			$("#txtCorreoRepetir").parent().addClass("has-error");
-     		$("#txtCorreoRepetir").parent().find("span").html("Tiene que confirmar el correo ingresado");
-     		this.model.set({correo_valido : false});
-		}
-	}, 
 	validarContraseniaLleno: function(event) {
-		if($("#txtContrasenia").val() == ""){
-			$("#txtContrasenia").parent().addClass("has-error");
-     		$("#txtContrasenia").parent().find("span").html("Tiene que ingresar su contraseña");
+		if($("#txtContraseniaAntgua").val() == ""){
+			$("#txtContraseniaAntgua").parent().addClass("has-error");
+     		$("#txtContraseniaAntgua").parent().find("span").html("Tiene que ingresar su contraseña");
      		this.model.set({contrasenia_valido : false});
 		}else{
-			$("#txtContrasenia").parent().removeClass("has-error");
-     		$("#txtContrasenia").parent().find("span").html("");
+			$("#txtContraseniaAntgua").parent().removeClass("has-error");
+     		$("#txtContraseniaAntgua").parent().find("span").html("");
+     		this.model.set({contrasenia_valido : true});
+		}
+	}, 	
+	validarContraseniaAntiguaDiferente: function(event){
+		this.validarContraseniaLleno();
+		if($("#txtContraseniaAntgua").val() == $("#txtContraseniaNueva").val()){
+			$("#txtContraseniaNueva").parent().addClass("has-error");
+     		$("#txtContraseniaNueva").parent().find("span").html("La nueva contraseña no puede coincidir con la primera");
+     		this.model.set({contrasenia_valido : false});
+		}else{
+			$("#txtContraseniaNueva").parent().removeClass("has-error");
+     		$("#txtContraseniaNueva").parent().find("span").html("");
      		this.model.set({contrasenia_valido : true});
 		}
 	}, 
 	validarContraseniaIgual: function(event) {
 		this.validarContraseniaLleno();
-		if($("#txtContrasenia").val() != $("#txtContraseniaRepetir").val()){
-			$("#txtContraseniaRepetir").parent().addClass("has-error");
-     		$("#txtContraseniaRepetir").parent().find("span").html("La contraseña ingresada no coincide con la primera");
+		if($("#txtContraseniaNueva").val() != $("#txtContraseniaNuevaRepetida").val()){
+			$("#txtContraseniaNuevaRepetida").parent().addClass("has-error");
+     		$("#txtContraseniaNuevaRepetida").parent().find("span").html("La contraseña ingresada no coincide con la primera");
      		this.model.set({contrasenia_valido : false});
 		}else{
-			$("#txtContraseniaRepetir").parent().removeClass("has-error");
-     		$("#txtContraseniaRepetir").parent().find("span").html("");
+			$("#txtContraseniaNuevaRepetida").parent().removeClass("has-error");
+     		$("#txtContraseniaNuevaRepetida").parent().find("span").html("");
      		this.model.set({contrasenia_valido : true});
 		}
 	}, 
 	validarContraseniaRepetidoLleno: function(event) {
-		if($("#txtContraseniaRepetir").val() == ""){
-			$("#txtContraseniaRepetir").parent().addClass("has-error");
-     		$("#txtContraseniaRepetir").parent().find("span").html("Tiene que confirmar la contrasña ingresada");
+		if($("#txtContraseniaNueva").val() == ""){
+			$("#txtContraseniaNueva").parent().addClass("has-error");
+     		$("#txtContraseniaNueva").parent().find("span").html("Tiene que confirmar la contrasña ingresada");
      		this.model.set({contrasenia_valido : false});
 		}
 	}, 
@@ -145,11 +144,43 @@ var FormUsuarioView = Backbone.View.extend({
 		   	this.model.set({correo_valido : true});
 		   }
 	}, 
-	GuardarPaso1: function(event){
+	guardarUsuarioCorreo: function(event){
+		alert("guardarUsuarioCorreo");
 		//this.validarContraseniaIgual();
 		this.validarUsuarioLleno();
 		this.validarCorreoLleno();
-		this.validarCorreoRepetidoLleno();
+		this.model.validar();
+		if(this.model.get("valido") == true){
+			console.log(this.model.toJSON());
+			/*
+			$.ajax({
+      		type: "POST",
+      		url: BASE_URL + "registro/guardar_usuario",
+      		data: "correo=" + $("#txtCorreo").val(),
+      		async: false,
+      		success: function(data){
+      			if(data >= 1){
+      				$("#txtCorreo").parent().addClass("has-error");
+      				$("#txtCorreo").parent().find("span").html("El correo ya se encuentra asociado a un usuario registrado");
+      				correo_valido_valor = false;
+      			}else{
+      				$("#txtCorreo").parent().removeClass("has-error");
+      				$("#txtCorreo").parent().find("span").html("");
+      				correo_valido_valor = true;
+      			}
+      		},
+      		error: function(data){
+      			//FALTA MANEJAR EL ERROR DEL AJAX
+      		}
+      	});
+			*/
+		}else{
+			
+		}
+	},
+	btnCambiarContrasenia: function(event){
+		alert("btnCambiarContrasenia");
+		//this.validarContraseniaIgual();
 		this.validarContraseniaLleno();
 		this.validarContraseniaRepetidoLleno();
 		this.validarContraseniaIgual();
