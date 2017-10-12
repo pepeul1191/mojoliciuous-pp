@@ -7,6 +7,7 @@ var FormUsuarioView = Backbone.View.extend({
 	    "focusout #txtUsuario": "validarUsuarioLleno", 
 	    "keyup #txtCorreo": "validarCorreoRepetido", 
 	    "focusout #txtCorreo": "validarCorreoFormato", 
+	    "keyup #txtContraseniaAntgua": "validarContraseniaAntigua", 
 	    "focusout #txtContraseniaAntgua": "validarContraseniaLleno", 
 	    "focusout #txtContraseniaNueva": "validarContraseniaAntiguaDiferente", 
 	    "focusout #txtContraseniaNuevaRepetida": "validarContraseniaIgual", 
@@ -38,6 +39,36 @@ var FormUsuarioView = Backbone.View.extend({
      		error: function(data){
      			$("#txtUsuario").parent().addClass("has-error");
      			$("#txtUsuario").parent().find("span").html("Error: No se podido validar si el usuario está en uso");
+     			correo_valido_valor = false;
+     		}
+     	});
+     	this.model.set({usuario_valido : usuario_valido_valor});
+	},
+	validarContraseniaAntigua: function(event) {
+		var usuario_valido_valor;
+		var usuario_temp = new Object();
+	   usuario_temp.id = $("#idUsuario").html();
+	   usuario_temp.contrasenia  = $("#txtContraseniaAntgua").val(),
+
+     	$.ajax({
+     		type: "POST",
+     		url: BASE_URL + "accesos/usuario/contrasenia_repetida",
+     		data: "data=" + JSON.stringify(usuario_temp),
+     		async: false,
+     		success: function(data){
+     			if(data == 0){
+     				$("#txtContraseniaAntgua").parent().addClass("has-error");
+     				$("#txtContraseniaAntgua").parent().find("span").html("La contraseña ingresada no coincide");
+     				usuario_valido_valor = false;
+     			}else{
+     				$("#txtContraseniaAntgua").parent().removeClass("has-error");
+     				$("#txtContraseniaAntgua").parent().find("span").html("");
+     				usuario_valido_valor = true;
+     			}
+     		},
+     		error: function(data){
+     			$("#txtContraseniaAntgua").parent().addClass("has-error");
+     			$("#txtContraseniaAntgua").parent().find("span").html("Error: No se podido validar si la contraseña antigua");
      			correo_valido_valor = false;
      		}
      	});
