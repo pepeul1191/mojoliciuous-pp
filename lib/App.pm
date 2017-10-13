@@ -48,6 +48,8 @@ sub startup {
     # Accesos / Usuario
     $r->get('/accesos/usuario/listar')->to('acceso-usuario#listar');
     $r->get('/accesos/usuario/logs/:usuario_id')->to('acceso-usuario#logs');
+    $r->post('/accesos/usuario/nombre_repetido')->to('acceso-usuario#nombre_repetido');
+    $r->post('/accesos/usuario/correo_repetido')->to('acceso-usuario#correo_repetido');
 }
 
 1;

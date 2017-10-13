@@ -89,10 +89,13 @@ var FormUsuarioView = Backbone.View.extend({
 	},
 	validarCorreoRepetido: function(event) {
 		var correo_valido_valor;
+		var usuario_temp = new Object();
+	   usuario_temp.id = $("#idUsuario").html();
+	   usuario_temp.correo  = $("#txtCorreo").val(),
      	$.ajax({
      		type: "POST",
      		url: BASE_URL + "accesos/usuario/correo_repetido",
-     		data: "correo=" + $("#txtCorreo").val(),
+     		data: "data=" + JSON.stringify(usuario_temp),
      		async: false,
      		success: function(data){
      			if(data >= 1){

@@ -29,4 +29,24 @@ sub logs {
     $self->render(text => $rpta);
 }
 
+sub nombre_repetido {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/nombre_repetido?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
+sub correo_repetido {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/correo_repetido?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
 1;
