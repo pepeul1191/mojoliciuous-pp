@@ -49,4 +49,14 @@ sub correo_repetido {
     $self->render(text => $rpta);
 }
 
+sub contrasenia_repetida {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/contrasenia_repetida?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
 1;

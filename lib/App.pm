@@ -50,6 +50,7 @@ sub startup {
     $r->get('/accesos/usuario/logs/:usuario_id')->to('acceso-usuario#logs');
     $r->post('/accesos/usuario/nombre_repetido')->to('acceso-usuario#nombre_repetido');
     $r->post('/accesos/usuario/correo_repetido')->to('acceso-usuario#correo_repetido');
+    $r->post('/accesos/usuario/contrasenia_repetida')->to('acceso-usuario#contrasenia_repetida');
 }
 
 1;
