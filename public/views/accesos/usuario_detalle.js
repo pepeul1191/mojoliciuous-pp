@@ -6,10 +6,13 @@ var UsuarioDetalleView = Backbone.View.extend({
 	},
 	render: function(usuario_id){
 		$("#btnModal").click(); 
+		var context = this.getUsuario(usuario_id);
+		if(context == null){
+			window.location.replace(BASE_URL + "error/access/404");
+		}
 		this.$el.html(this.getTemplate());
 		var source = $("#usuario-detalle-template").html();
 		var template = Handlebars.compile(source);
-		var context = this.getUsuario(usuario_id);
 		var html = template(context);
 		this.$el.html(html);
 		var usuario = new Usuario();
@@ -36,7 +39,11 @@ var UsuarioDetalleView = Backbone.View.extend({
 		   type: "GET", 
 		   async: false, 
 		   success: function(data) {
-			   	usuario_json = JSON.parse(data);
+		   		if (data == "null"){
+		   			usuario_json = null;
+		   		}else{
+		   			usuario_json = JSON.parse(data);
+		   		}
 		   }
 		});
 		return usuario_json;
