@@ -59,4 +59,14 @@ sub contrasenia_repetida {
     $self->render(text => $rpta);
 }
 
+sub obtener_usuario_correo {
+    my $self = shift;
+    my $usuario_id = $self->param('usuario_id');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/usuario_correo/' . $usuario_id;
+    my $client = REST::Client->new(); $client->GET($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);    
+}
+
 1;

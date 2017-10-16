@@ -51,6 +51,7 @@ sub startup {
     $r->post('/accesos/usuario/nombre_repetido')->to('acceso-usuario#nombre_repetido');
     $r->post('/accesos/usuario/correo_repetido')->to('acceso-usuario#correo_repetido');
     $r->post('/accesos/usuario/contrasenia_repetida')->to('acceso-usuario#contrasenia_repetida');
+    $r->get('/accesos/usuario/obtener_usuario_correo/:usuario_id')->to('acceso-usuario#obtener_usuario_correo');
 }
 
 1;

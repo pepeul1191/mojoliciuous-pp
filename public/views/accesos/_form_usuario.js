@@ -179,14 +179,13 @@ var FormUsuarioView = Backbone.View.extend({
 		   }
 	}, 
 	guardarUsuarioCorreo: function(event){
-		alert("guardarUsuarioCorreo");
-		//this.validarContraseniaIgual();
+		this.validarUsuarioRepetido();
+		this.validarCorreoRepetido();
 		this.validarUsuarioLleno();
 		this.validarCorreoLleno();
-		this.model.validar();
+		//this.model.validar();
 		if(this.model.get("valido") == true){
-			console.log(this.model.toJSON());
-			/*
+			//console.log(this.model.toJSON());
 			$.ajax({
       		type: "POST",
       		url: BASE_URL + "registro/guardar_usuario",
@@ -207,17 +206,17 @@ var FormUsuarioView = Backbone.View.extend({
       			//FALTA MANEJAR EL ERROR DEL AJAX
       		}
       	});
-			*/
 		}else{
 			
 		}
 	},
-	btnCambiarContrasenia: function(event){
+	cambiarContrasenia: function(event){
 		alert("btnCambiarContrasenia");
 		//this.validarContraseniaIgual();
-		this.validarContraseniaLleno();
-		this.validarContraseniaRepetidoLleno();
+		this.validarContraseniaAntigua();
+		this.validarContraseniaAntiguaDiferente();
 		this.validarContraseniaIgual();
+		this.validarContraseniaLleno();
 		this.model.validar();
 		if(this.model.get("valido") == true){
 			console.log(this.model.toJSON());

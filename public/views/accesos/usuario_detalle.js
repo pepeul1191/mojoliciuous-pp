@@ -4,39 +4,41 @@ var UsuarioDetalleView = Backbone.View.extend({
 		//this.render();
 		console.log("initialize");
 	},
-	render: function(){
+	render: function(usuario_id){
 		$("#btnModal").click(); 
 		this.$el.html(this.getTemplate());
+		var source = $("#usuario-detalle-template").html();
+		var template = Handlebars.compile(source);
+		var context = this.getUsuario(usuario_id);
+		var html = template(context);
+		this.$el.html(html);
 		var usuario = new Usuario();
 		var formUsuarioView = new FormUsuarioView({model:usuario});
 		formUsuarioView.render();
 	}, 
-	getTemplate: function(usuario_id) {
+	getTemplate: function() {
 		var data = { };
-		var template_compiled = null;
+		var template = null;
 		$.ajax({
 		   url: STATICS_URL + 'templates/accesos/usuario_detalle.html', 
 		   type: "GET", 
 		   async: false, 
-		   success: function(source) {
-			   	var template = Handlebars.compile(source);
-			   	template_compiled = template(data);
+		   success: function(source) { 
+			   template = source
 		   }
 		});
-		return template_compiled;
+		return template;
 	},
-	mostrarTabla: function(usuario_id){
-		tablaLogs.BorrarTable();
-		var ajax_log = new AjaxPython(); 
-		ajax_log.Constructor("GET", BASE_URL + "accesos/usuario/logs/" + usuario_id, "", false);
-		tablaLogs.SetTableId("tablaLogs");
-		tablaLogs.SetTableObj("tablaLogs");
-		tablaLogs.SetTableHeader(array_json_th_log);
-		tablaLogs.SetTableBody(array_json_td_log, array_json_btn_td_log, ajax_log);
-		tablaLogs.SetTableFooter(array_json_btn_log, false);
-		tablaLogs.SetLabelMensaje("#txtMensajeRptaModal");
-		//tablaLogs.SetExtraData(array_extra_data_rol);
-		//tablaLogs.SetURLGuardar(BASE_URL + "accesos/rol/guardar");
-		tablaLogs.MostrarTable();
+	getUsuario: function(usuario_id){
+		var usuario_json = { };
+		$.ajax({
+		   url: BASE_URL + 'accesos/usuario/obtener_usuario_correo/' + usuario_id, 
+		   type: "GET", 
+		   async: false, 
+		   success: function(data) {
+			   	usuario_json = JSON.parse(data);
+		   }
+		});
+		return usuario_json;
 	}
 });
