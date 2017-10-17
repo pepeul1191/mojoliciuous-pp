@@ -13,6 +13,8 @@ var Router = Marionette.AppRouter.extend({
         "accesos/sistemas/rol/:sistema_id" : "showSistemaRol",
         "accesos/usuario/logs/:usuario_id" : "showUsuarioLog",
         "accesos/usuario/editar/:usuario_id" : "showUsuarioDetalle", 
+        "accesos/usuario/sistemas/:usuario_id" : "showUsuarioSistemas", 
+        "accesos/usuario/roles_permisos/:usuario_id" : "showUsuarioRolesPermisos", 
         "usuario" : "usuarioIndex",
         "*actions" : "index"
     },
@@ -57,11 +59,21 @@ var Router = Marionette.AppRouter.extend({
         var usuarioDetalleView = new UsuarioDetalleView({});
         usuarioDetalleView.render(usuario_id);
         $("#idUsuario").html(usuario_id);
-        //usuarioDetalleView.mostrarTabla(usuario_id);
     },
+    showUsuarioSistemas: function(usuario_id){
+        var usuarioSistemaView = new UsuarioSistemaView({});
+        usuarioSistemaView.render(usuario_id);
+        $("#idUsuario").html(usuario_id);
+    },/*
+    showUsuarioRolesPermisos: function(usuario_id){
+        var usuarioRolPermisoView = new UsuarioRolPermisoView({});
+        usuarioRolPermisoView.render(usuario_id);
+        $("#idUsuario").html(usuario_id);
+        //usuarioDetalleView.mostrarTabla(usuario_id);
+    },*/
 });
     
-const App = Marionette.Application.extend({
+var App = Marionette.Application.extend({
     region: '#body-app',
     onStart() {
         var router = new Router();
@@ -69,5 +81,5 @@ const App = Marionette.Application.extend({
     }
 });
 
-const myApp = new App();
+var myApp = new App();
 myApp.start();

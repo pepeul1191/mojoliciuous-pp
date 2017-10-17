@@ -15,10 +15,11 @@ var usuario_array_json_td = [
 ];
 
 var usuario_array_json_btn_td = [
-	{clase:"fa fa-thumb-tack", href:"#/accesos/usuario/logs/",alt:"Ver logs de ingreso",estilos:"padding-left: 8px;", operacion:"IrURL"},
-	{clase:"fa fa-pencil", href:"#/accesos/usuario/editar/",alt:"Editar usuario",estilos:"padding-left: 8px;", operacion:"IrURL"},
-	{clase:"fa fa-envelope-o", url:"#",alt:"Enviar contraseña a su correo",estilos:"padding-left: 8px;", operacion:"EnviarContrasenia"},
-	{clase:"fa fa-list", href:"#/accesos/usuario/menu/",alt:"Asociar Roles y Permisos",estilos:"padding-left: 8px;", operacion:"IrURL"}
+      {clase:"fa fa-thumb-tack", href:"#/accesos/usuario/logs/",alt:"Ver logs de ingreso",estilos:"padding-left: 8px;", operacion:"IrURL"},
+      {clase:"fa fa-pencil", href:"#/accesos/usuario/editar/",alt:"Editar usuario",estilos:"padding-left: 8px;", operacion:"IrURL"},
+      {clase:"fa fa-laptop", href:"#/accesos/usuario/sistemas/",alt:"Asociar Sistemas",estilos:"padding-left: 8px;", operacion:"IrURL"},
+      {clase:"fa fa-list", href:"#/accesos/usuario/roles_permisos/",alt:"Asociar Roles y Permisos",estilos:"padding-left: 8px;", operacion:"IrURL"}, 
+      {clase:"fa fa-envelope-o", url:"#",alt:"Enviar contraseña a su correo",estilos:"padding-left: 8px;", operacion:"EnviarContrasenia"}
 ]; 
 
 var usuario_array_json_btn = [
