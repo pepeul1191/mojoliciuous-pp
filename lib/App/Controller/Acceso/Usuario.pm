@@ -69,4 +69,24 @@ sub obtener_usuario_correo {
     $self->render(text => $rpta);    
 }
 
+sub guardar_usuario_correo {
+    my $self = shift;
+    my $usuario = $self->param('usuario');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/guardar_usuario_correo?usuario=' . $usuario;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
+sub guardar_contrasenia {
+    my $self = shift;
+    my $contrasenia = $self->param('contrasenia');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/guardar_contrasenia?contrasenia=' . $contrasenia;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
 1;

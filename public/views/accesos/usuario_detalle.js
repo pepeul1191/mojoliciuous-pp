@@ -2,7 +2,6 @@ var UsuarioDetalleView = Backbone.View.extend({
 	el: '#modal-container',
 	initialize: function(){
 		//this.render();
-		console.log("initialize");
 	},
 	render: function(usuario_id){
 		$("#btnModal").click(); 

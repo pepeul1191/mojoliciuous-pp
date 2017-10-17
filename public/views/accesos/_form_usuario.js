@@ -39,10 +39,10 @@ var FormUsuarioView = Backbone.View.extend({
      		error: function(data){
      			$("#txtUsuario").parent().addClass("has-error");
      			$("#txtUsuario").parent().find("span").html("Error: No se podido validar si el usuario está en uso");
-     			correo_valido_valor = false;
+     			usuario_valido_valor = false;
      		}
      	});
-     	this.model.set({usuario_valido : usuario_valido_valor});
+     	this.model.set({datos_generales_valido : usuario_valido_valor});
 	},
 	validarContraseniaAntigua: function(event) {
 		var usuario_valido_valor;
@@ -59,31 +59,31 @@ var FormUsuarioView = Backbone.View.extend({
      			if(data == 0){
      				$("#txtContraseniaAntgua").parent().addClass("has-error");
      				$("#txtContraseniaAntgua").parent().find("span").html("La contraseña ingresada no coincide");
-     				usuario_valido_valor = false;
+     				contrasenia_valido_valor = false;
      			}else{
      				$("#txtContraseniaAntgua").parent().removeClass("has-error");
      				$("#txtContraseniaAntgua").parent().find("span").html("");
-     				usuario_valido_valor = true;
+     				contrasenia_valido_valor = true;
      			}
      		},
      		error: function(data){
      			$("#txtContraseniaAntgua").parent().addClass("has-error");
      			$("#txtContraseniaAntgua").parent().find("span").html("Error: No se podido validar si la contraseña antigua");
-     			correo_valido_valor = false;
+     			contrasenia_valido_valor = false;
      		}
      	});
-     	this.model.set({usuario_valido : usuario_valido_valor});
+     	this.model.set({datos_contrasenias_valido : contrasenia_valido_valor});
 	},
 	validarUsuarioLleno: function(event) {
 		if(this.model.get("usuario_valido") != false){
 			if($("#txtUsuario").val() == ""){
 				$("#txtUsuario").parent().addClass("has-error");
 	      	$("#txtUsuario").parent().find("span").html("Debe ingresar un usuario");
-	      	this.model.set({usuario_lleno : false});
+	      	this.model.set({datos_generales_valido : false});
 			}else{
 				$("#txtUsuario").parent().removeClass("has-error");
 	      	$("#txtUsuario").parent().find("span").html("");
-	      	this.model.set({usuario_lleno : true});
+	      	this.model.set({datos_generales_valido : true});
 			}
 		}
 	},
@@ -114,24 +114,24 @@ var FormUsuarioView = Backbone.View.extend({
      			correo_valido_valor = false;
      		}
      	});
-     	this.model.set({correo_valido : correo_valido_valor});
+     	this.model.set({datos_generales_valido : correo_valido_valor});
 	},
 	validarCorreoLleno: function(event) {
 		if($("#txtCorreo").val() == ""){
 			$("#txtCorreo").parent().addClass("has-error");
      		$("#txtCorreo").parent().find("span").html("Tiene que ingresar un correo");
-     		this.model.set({correo_valido : false});
+     		this.model.set({datos_generales_valido : false});
 		}
 	}, 
 	validarContraseniaLleno: function(event) {
 		if($("#txtContraseniaAntgua").val() == ""){
 			$("#txtContraseniaAntgua").parent().addClass("has-error");
      		$("#txtContraseniaAntgua").parent().find("span").html("Tiene que ingresar su contraseña");
-     		this.model.set({contrasenia_valido : false});
+     		this.model.set({datos_contrasenias_valido : false});
 		}else{
 			$("#txtContraseniaAntgua").parent().removeClass("has-error");
      		$("#txtContraseniaAntgua").parent().find("span").html("");
-     		this.model.set({contrasenia_valido : true});
+     		this.model.set({datos_contrasenias_valido : true});
 		}
 	}, 	
 	validarContraseniaAntiguaDiferente: function(event){
@@ -139,11 +139,11 @@ var FormUsuarioView = Backbone.View.extend({
 		if($("#txtContraseniaAntgua").val() == $("#txtContraseniaNueva").val()){
 			$("#txtContraseniaNueva").parent().addClass("has-error");
      		$("#txtContraseniaNueva").parent().find("span").html("La nueva contraseña no puede coincidir con la primera");
-     		this.model.set({contrasenia_valido : false});
+     		this.model.set({datos_contrasenias_valido : false});
 		}else{
 			$("#txtContraseniaNueva").parent().removeClass("has-error");
      		$("#txtContraseniaNueva").parent().find("span").html("");
-     		this.model.set({contrasenia_valido : true});
+     		this.model.set({datos_contrasenias_valido : true});
 		}
 	}, 
 	validarContraseniaIgual: function(event) {
@@ -151,11 +151,11 @@ var FormUsuarioView = Backbone.View.extend({
 		if($("#txtContraseniaNueva").val() != $("#txtContraseniaNuevaRepetida").val()){
 			$("#txtContraseniaNuevaRepetida").parent().addClass("has-error");
      		$("#txtContraseniaNuevaRepetida").parent().find("span").html("La contraseña ingresada no coincide con la primera");
-     		this.model.set({contrasenia_valido : false});
+     		this.model.set({datos_contrasenias_valido : false});
 		}else{
 			$("#txtContraseniaNuevaRepetida").parent().removeClass("has-error");
      		$("#txtContraseniaNuevaRepetida").parent().find("span").html("");
-     		this.model.set({contrasenia_valido : true});
+     		this.model.set({datos_contrasenias_valido : true});
 		}
 	}, 
 	validarContraseniaRepetidoLleno: function(event) {
@@ -184,64 +184,66 @@ var FormUsuarioView = Backbone.View.extend({
 		this.validarUsuarioLleno();
 		this.validarCorreoLleno();
 		//this.model.validar();
-		if(this.model.get("valido") == true){
+		if(this.model.get("datos_generales_valido") == true){
 			//console.log(this.model.toJSON());
 			$.ajax({
-      		type: "POST",
-      		url: BASE_URL + "registro/guardar_usuario",
-      		data: "correo=" + $("#txtCorreo").val(),
-      		async: false,
-      		success: function(data){
-      			if(data >= 1){
-      				$("#txtCorreo").parent().addClass("has-error");
-      				$("#txtCorreo").parent().find("span").html("El correo ya se encuentra asociado a un usuario registrado");
-      				correo_valido_valor = false;
-      			}else{
-      				$("#txtCorreo").parent().removeClass("has-error");
-      				$("#txtCorreo").parent().find("span").html("");
-      				correo_valido_valor = true;
-      			}
-      		},
-      		error: function(data){
-      			//FALTA MANEJAR EL ERROR DEL AJAX
-      		}
-      	});
+	      		type: "POST",
+	      		url: BASE_URL + "accesos/usuario/guardar_usuario_correo",
+	      		data: "usuario=" + JSON.stringify(this.model.datosGeneralesToJSON()),
+	      		async: false,
+	      		success: function(data){
+	      			var rpta = JSON.parse(data);
+	      			if(rpta['tipo_mensaje'] == "error"){
+	      				$("#txtMensajeRptaUsuarioDetalle").removeClass("color-success");
+	      				$("#txtMensajeRptaUsuarioDetalle").addClass("color-rojo");
+	      				$("#txtMensajeRptaUsuarioDetalle").html(rpta['mensaje'][0]);
+	      				correo_valido_valor = false;
+	      			}else{
+	      				$("#txtMensajeRptaUsuarioDetalle").removeClass("color-rojo");
+	      				$("#txtMensajeRptaUsuarioDetalle").addClass("color-success");
+	      				$("#txtMensajeRptaUsuarioDetalle").html(rpta['mensaje'][0]);
+	      				correo_valido_valor = true;
+	      			}
+	      		},
+	      		error: function(data){
+	      			//FALTA MANEJAR EL ERROR DEL AJAX
+	      		}
+	      	});
 		}else{
 			
 		}
 	},
 	cambiarContrasenia: function(event){
-		alert("btnCambiarContrasenia");
 		//this.validarContraseniaIgual();
 		this.validarContraseniaAntigua();
 		this.validarContraseniaAntiguaDiferente();
 		this.validarContraseniaIgual();
 		this.validarContraseniaLleno();
-		this.model.validar();
-		if(this.model.get("valido") == true){
-			console.log(this.model.toJSON());
-			/*
+		//this.model.validar();
+		if(this.model.get("datos_contrasenias_valido") == true){
 			$.ajax({
-      		type: "POST",
-      		url: BASE_URL + "registro/guardar_usuario",
-      		data: "correo=" + $("#txtCorreo").val(),
-      		async: false,
-      		success: function(data){
-      			if(data >= 1){
-      				$("#txtCorreo").parent().addClass("has-error");
-      				$("#txtCorreo").parent().find("span").html("El correo ya se encuentra asociado a un usuario registrado");
-      				correo_valido_valor = false;
-      			}else{
-      				$("#txtCorreo").parent().removeClass("has-error");
-      				$("#txtCorreo").parent().find("span").html("");
-      				correo_valido_valor = true;
-      			}
-      		},
-      		error: function(data){
-      			//FALTA MANEJAR EL ERROR DEL AJAX
-      		}
-      	});
-			*/
+	      		type: "POST",
+	      		url: BASE_URL + "accesos/usuario/guardar_contrasenia",
+	      		data: "contrasenia=" + JSON.stringify(this.model.datosContraseniasToJSON()),
+	      		async: false,
+	      		success: function(data){
+	      			var rpta = JSON.parse(data);
+	      			if(rpta['tipo_mensaje'] == "error"){
+	      				$("#txtMensajeRptaUsuarioDetalle").removeClass("color-success");
+	      				$("#txtMensajeRptaUsuarioDetalle").addClass("color-rojo");
+	      				$("#txtMensajeRptaUsuarioDetalle").html(rpta['mensaje'][0]);
+	      				correo_valido_valor = false;
+	      			}else{
+	      				$("#txtMensajeRptaUsuarioDetalle").removeClass("color-rojo");
+	      				$("#txtMensajeRptaUsuarioDetalle").addClass("color-success");
+	      				$("#txtMensajeRptaUsuarioDetalle").html(rpta['mensaje'][0]);
+	      				correo_valido_valor = true;
+	      			}
+	      		},
+	      		error: function(data){
+	      			//FALTA MANEJAR EL ERROR DEL AJAX
+	      		}
+	      	});
 		}else{
 			
 		}
