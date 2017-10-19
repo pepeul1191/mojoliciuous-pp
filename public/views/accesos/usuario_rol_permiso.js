@@ -5,18 +5,16 @@ var UsuarioRolPermisoView = Backbone.View.extend({
 	},
 	render: function(usuario_id){
 		$("#btnModal").click(); 
-		var context = this.getUsuario(usuario_id);
+		var context = this.getUsuarioSistemas(usuario_id);
+		console.log(context);
 		if(context == null){
 			window.location.replace(BASE_URL + "error/access/404");
 		}
 		this.$el.html(this.getTemplate());
-		var source = $("#usuario-detalle-template").html();
+		var source = $("#usuario-roles-permisos-template").html();
 		var template = Handlebars.compile(source);
 		var html = template(context);
 		this.$el.html(html);
-		var usuario = new Usuario();
-		var formUsuarioView = new FormUsuarioRolPermisoView({model:usuario});
-		formUsuarioView.render();
 	}, 
 	getTemplate: function() {
 		var data = { };
@@ -31,20 +29,27 @@ var UsuarioRolPermisoView = Backbone.View.extend({
 		});
 		return template;
 	},
-	getUsuario: function(usuario_id){
-		var usuario_json = { };
+	getUsuarioSistemas: function(usuario_id){
+		var sistemas_json = { };
 		$.ajax({
-		   url: BASE_URL + 'accesos/usuario/obtener_usuario_correo/' + usuario_id, 
+		   url: BASE_URL + 'accesos/usuario/listar_sistemas/' + usuario_id, 
 		   type: "GET", 
 		   async: false, 
 		   success: function(data) {
 		   		if (data == "null"){
-		   			usuario_json = null;
+		   			sistemas_json = null;
 		   		}else{
-		   			usuario_json = JSON.parse(data);
+		   			sistemas_json = JSON.parse(data);
 		   		}
 		   }
 		});
-		return usuario_json;
-	}
+		var rpta = [];
+		for(var i = 0; i < sistemas_json.length; i++){
+			if(sistemas_json[i]['existe'] == 1){
+				var temp = {sistema_id:sistemas_json[i]['id'], nombre:sistemas_json[i]['nombre']};
+				rpta.push(temp);
+			}
+		}
+		return {usuario_sistemas:rpta};
+	},
 });
