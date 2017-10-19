@@ -54,6 +54,8 @@ sub startup {
     $r->get('/accesos/usuario/obtener_usuario_correo/:usuario_id')->to('acceso-usuario#obtener_usuario_correo');
     $r->post('/accesos/usuario/guardar_usuario_correo')->to('acceso-usuario#guardar_usuario_correo');
     $r->post('/accesos/usuario/guardar_contrasenia')->to('acceso-usuario#guardar_contrasenia');
+    $r->get('/accesos/usuario/listar_sistemas/:usuario_id')->to('acceso-usuario#listar_sistemas');
+    $r->post('/accesos/usuario/guardar_sistemas')->to('acceso-usuario#guardar_sistemas');
 }
 
 1;
