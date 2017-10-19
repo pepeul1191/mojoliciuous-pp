@@ -110,4 +110,46 @@ sub guardar_sistemas {
     $self->render(text => $rpta);
 }
 
+sub listar_permisos {
+    my $self = shift;
+    my $sistema_id = $self->param('sistema_id');
+    my $usuario_id = $self->param('usuario_id');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/listar_permisos/' . $sistema_id . '/' . $usuario_id;
+    my $client = REST::Client->new(); $client->GET($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
+sub listar_roles {
+    my $self = shift;
+    my $sistema_id = $self->param('sistema_id');
+    my $usuario_id = $self->param('usuario_id');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/listar_roles/' . $sistema_id . '/' . $usuario_id;
+    my $client = REST::Client->new(); $client->GET($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
+sub asociar_roles {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/asociar_roles?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
+sub asociar_permisos {
+    my $self = shift;
+    my $data = $self->param('data');
+    my $url = %App::Config::Variables::Data{'accesos'} . 'usuario/asociar_permisos?data=' . $data;
+    my $client = REST::Client->new(); $client->POST($url);
+    my $rpta = decode('utf8', $client->responseContent());
+
+    $self->render(text => $rpta);
+}
+
 1;

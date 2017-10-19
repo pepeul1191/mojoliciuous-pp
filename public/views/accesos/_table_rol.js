@@ -42,7 +42,7 @@ var MostrarRoles = new Class({
         var id_rol = thisDOM.parent().parent().children(0).children(0).html();
 
         if(operacion == "MostrarRoles"){
-        	        	tablaPermisos.BorrarTable();
+        	tablaPermisos.BorrarTable();
 
         	var array_json_th = [
 				{titulo:"id", index: "id", estilos:"width: 10px; display:none;"},

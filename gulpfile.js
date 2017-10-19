@@ -169,7 +169,6 @@ gulp.task('accesos', function(){
         MEDIA + 'views/accesos/usuario_detalle.js', 
         MEDIA + 'views/accesos/usuario_rol_permiso.js', 
         MEDIA + 'views/accesos/_form_usuario.js', 
-        MEDIA + 'views/accesos/_form_usuario_rol_permisos.js', 
         MEDIA + 'routes/accesos.js'
     ])
     //.pipe(uglify())

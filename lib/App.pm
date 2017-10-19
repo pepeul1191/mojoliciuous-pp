@@ -56,6 +56,10 @@ sub startup {
     $r->post('/accesos/usuario/guardar_contrasenia')->to('acceso-usuario#guardar_contrasenia');
     $r->get('/accesos/usuario/listar_sistemas/:usuario_id')->to('acceso-usuario#listar_sistemas');
     $r->post('/accesos/usuario/guardar_sistemas')->to('acceso-usuario#guardar_sistemas');
+    $r->get('/accesos/usuario/listar_permisos/:sistema_id/:usuario_id')->to('acceso-usuario#listar_permisos');
+    $r->get('/accesos/usuario/listar_roles/:sistema_id/:usuario_id')->to('acceso-usuario#listar_roles');
+    $r->post('/accesos/usuario/asociar_roles')->to('acceso-usuario#asociar_roles');
+    $r->post('/accesos/usuario/asociar_permisos')->to('acceso-usuario#asociar_permisos');
 }
 
 1;
