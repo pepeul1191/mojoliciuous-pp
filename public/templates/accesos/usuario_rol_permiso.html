@@ -8,8 +8,10 @@
             <div class="modal-body">
               <div class="row">
                   <div class="col-md-6 workspace">
-                      <h5 class="subtitulo" style="margin-bottom:15px">Sistemas</h5>
-                      <select>
+                      <h5 class="subtitulo" style="margin-bottom:15px; padding-top: 2.5px;">Selccione un sistema al que el usuario se encuentre registrado</h5>
+                    </div>  
+                    <div class="col-md-6 workspace">
+                      <select class="form-control" id="cbmSistemas">
                           <option value="E"></option>
                           {{#each usuario_sistemas}}
                           <option value="{{sistema_id}}">{{nombre}}</option>

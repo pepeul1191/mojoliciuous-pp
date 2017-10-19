@@ -18,6 +18,55 @@ label{font-weight: 500;}
 .sky-form header {color: inherit; display: block;font-size: 20px;background: #fff; font-weight: 400; padding: 8px 20px; border-bottom: 1px solid #eee;}
 .sky-form fieldset {display: block; padding: 20px 10px 20px;border: none;}
 .modal-body {padding-left: 35px; padding-right: 35px;}
+
+
+
+
+.sky-form .select select {
+    height: 33px;
+    padding: 6px 10px;
+}
+
+.sky-form .input input, .sky-form .select select, .sky-form .textarea textarea {
+    border-width: 1px;
+    font-size: 14px;
+    color: #404040;
+}
+
+.sky-form .input input, .sky-form .select select, .sky-form .textarea textarea, .sky-form .radio i, .sky-form .checkbox i, .sky-form .toggle i, .sky-form .icon-append, .sky-form .icon-prepend {
+    border-color: #e5e5e5;
+    -ms-transition: border-color 0.3s;
+    -moz-transition: border-color 0.3s;
+    -webkit-transition: border-color 0.3s;
+}
+
+.select select {
+    padding-right: 28px;
+}
+
+.sky-form .input input, .sky-form .select select, .sky-form .textarea textarea {
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    height: 39px;
+    padding: 6px 10px;
+    outline: none;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 0;
+    background: #fff;
+    font: 15px/23px 'Open Sans', Helvetica, Arial, sans-serif;
+    color: #404040;
+    appearance: normal;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+
+
+
+
 .btn-default > i {margin-right: 5px}
 .texto-validacion{color:#a94442; padding-left: 10px;}
 /* Inicio Global */
