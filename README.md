@@ -7,22 +7,9 @@
     $ sudo cpanm Mojolicious::Plugin::SecureCORS
     $ sudo apt install libmojolicious-perl
 
-### Instalar SQLite para Perl
+### Instalar dependencias de Perl
 
-    $ sudo cpanm DBD::SQLite
-
-### Instalar JSON para Perl
-
-    $ sudo cpanm JSON
-    $ sudo cpanm JSON::XS
-    
-### Instalar Crypt::MCrypt para Perl
- 
-    $ sudo cpanm Crypt::MCrypt 
-    
-### Instalar Try Catch Standar Error para Perl
-
-    $ sudo cpanm Try::Tiny
+    $ sudo cpanm JSON REST::Client JSON::XS Crypt::MCrypt Try::Tiny DBD::SQLite
 
 ### Arrancar el microservicio
 
